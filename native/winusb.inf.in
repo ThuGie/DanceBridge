@@ -1,0 +1,36 @@
+; DanceBridge modern inbox-WinUSB template, Windows 10/11 x64.
+; Template derived from libwdi. Copyright 2010-2023 Pete Batard, LGPL-3.0-or-later.
+[Version]
+Signature = "$Windows NT$"
+Class = USBDevice
+ClassGuid = {88bae032-5a81-49f0-bc3d-a4ff138216d6}
+Provider = %VendorName%
+CatalogFile = #CAT_FILENAME#
+DriverVer = #DRIVER_DATE#, #DRIVER_VERSION#
+PnpLockdown = 1
+
+[Manufacturer]
+%VendorName% = Devices,NTamd64.10.0
+
+[Devices.NTamd64.10.0]
+%DeviceName% = USB_Install, USB\%DeviceID%
+
+[USB_Install]
+Include = winusb.inf
+Needs = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = AddDeviceInterfaceGUID
+
+[AddDeviceInterfaceGUID]
+HKR,,DeviceInterfaceGUIDs,0x10000,%DeviceGUID%
+
+[Strings]
+DeviceName = "#DEVICE_DESCRIPTION#"
+VendorName = "#DEVICE_MANUFACTURER#"
+DeviceID = "#DEVICE_HARDWARE_ID#"
+DeviceGUID = "#DEVICE_INTERFACE_GUID#"

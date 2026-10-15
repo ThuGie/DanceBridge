@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+artifacts/
+.vs/
+*.user
+*.exe
+*.zip
+Information.md
+native/bin/
